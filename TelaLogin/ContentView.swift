@@ -43,7 +43,7 @@ struct ContentView: View {
                 .fontWeight(.semibold)
                 .foregroundColor(.gray)
                 .padding(/*@START_MENU_TOKEN@*/.trailing, 314.0/*@END_MENU_TOKEN@*/)
-                .padding(.bottom, 110)
+                .padding(.bottom, 111)
             
                 
         }.edgesIgnoringSafeArea(.bottom)
