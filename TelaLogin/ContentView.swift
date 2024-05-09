@@ -1,4 +1,5 @@
 import SwiftUI
+import AuthenticationServices
 
 struct ContentView: View {
     @State private var showPassword = false
@@ -106,10 +107,36 @@ struct ContentView: View {
                         
                         }
                     }
-                    VStack{
+                    VStack(alignment: .center, spacing: 13.0) {
+                        Button(action: {}, label: {
+                            Spacer()
+                            Text("Criar conta")
+                                .padding()
+                            Spacer()
+                                
+                        }).frame(height: 50)
+                        .background(.purple)
+                        .foregroundColor(.white)
+                        .cornerRadius(7)
                         
+                        SignInWithAppleButton(
+                            onRequest: { request in
+                                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Code@*/ /*@END_MENU_TOKEN@*/
+                            },
+                            onCompletion: { result in
+                                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Code@*/ /*@END_MENU_TOKEN@*/
+                            }
+                        ).frame(height: 50)
                         
-                    }
+                        HStack {
+                            Text(" Já possui uma conta?")
+                                .font(.body)
+                                .foregroundStyle(.gray)
+                            Button("Entre") {
+                                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
+                            }
+                        }
+                    } .padding([.leading, .trailing], 0)
                     Spacer()
                 }
                 .padding(.top, 45.0)
