@@ -26,26 +26,42 @@ struct ContentView: View {
             .padding(.top)
             .padding(.horizontal)
            
-            Rectangle()
-                .fill(Color.white)
-                .cornerRadius(20)
-                .shadow(radius: 10)
-                .padding(.top, 250)
             
-            Text("Crie sua conta")
-                .fontWeight(.semibold)
-                .foregroundColor(.black)
-                .font(.title)
-                .multilineTextAlignment(.leading)
-                .padding([.bottom, .trailing], 190.0)
-            
-            Text("E-mail")
-                .fontWeight(.semibold)
-                .foregroundColor(.gray)
-                .padding(/*@START_MENU_TOKEN@*/.trailing, 314.0/*@END_MENU_TOKEN@*/)
-                .padding(.bottom, 111)
-            
+            ZStack {
+                Rectangle()
+                    .fill(Color.white)
+                    .cornerRadius(20)
+                    .shadow(radius: 10)
                 
+                VStack(alignment: .leading) {
+                    
+                    Text("Crie sua conta")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.black)
+                        .font(.title)
+                        .multilineTextAlignment(.leading)
+                    
+                    VStack(alignment: .leading, spacing: 1.0) {
+                        
+                        Text("E-mail")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.gray)
+                        
+                        @State var textImput = ""
+                        
+                        TextField("Digite seu email", text: $textImput)
+                            .textFieldStyle(.roundedBorder)
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(.purple, lineWidth: 1)
+                            }
+                    }.padding(.top, 4.0)
+                    Spacer()
+                }
+                .padding(.top, 45.0)
+                .padding([.leading, .trailing], 16.0)
+            } .padding(.top, 250)
+            
         }.edgesIgnoringSafeArea(.bottom)
     }
 }
