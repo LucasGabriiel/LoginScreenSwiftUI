@@ -6,34 +6,24 @@ struct ContentView: View {
     @State var password = ""
     @State var email = ""
     @State var Ison = false
-
     
+    let gradient = Gradient(colors: [Color("Color1"), Color("Color2")])
     
     var body: some View {
         ZStack {
-            Rectangle()
-                .fill(Color.indigo)
-                .edgesIgnoringSafeArea(.all)
             VStack {
-                
-                HStack {
-                    Spacer()
-                    Image(systemName: "mustache.fill")
-                        .imageScale(.large)
-                    Text("Mustache")
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                        .font(.title)
-                        .multilineTextAlignment(.center)
-                    Image(systemName: "mustache.fill")
-                        .imageScale(.large)
-                    Spacer()
-                }
+                ZStack {
+                           Rectangle()
+                               .fill(
+                                   LinearGradient(gradient: gradient, startPoint: .top, endPoint: .bottom)
+                               )
+                           Image("yosda-logo")
+                               .resizable()
+                               .aspectRatio(contentMode: .fit)
+                               .frame(height: 100)
+                }.frame(height: 360)
                 Spacer()
-            }
-            .padding(.top)
-            .padding(.horizontal)
-            
+            }.ignoresSafeArea()
             
             ZStack {
                 Rectangle()
@@ -52,12 +42,13 @@ struct ContentView: View {
                     VStack(alignment: .leading, spacing: 4) {
                         
                         Text("E-mail")
+                            .font(.callout)
                             .fontWeight(.semibold)
                             .foregroundColor(.gray)
-                                                
+                        
                         TextField("Digite seu email", text: $email)
                             .textFieldStyle(.roundedBorder)
-                            .frame(height: 38)
+                            .frame(height: 45)
                             .overlay {
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(.purple, lineWidth: 1)
@@ -70,6 +61,8 @@ struct ContentView: View {
                             Text("Senha")
                                 .fontWeight(.semibold)
                                 .foregroundColor(.gray)
+                                
+                                
                             Spacer()
                             Button("Recuperar Senha") {
                                 /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
@@ -80,18 +73,19 @@ struct ContentView: View {
                             if showPassword {
                                 TextField("Password",
                                           text: $password)
-                                .frame(height: 38)
+                                .frame(height: 45)
                             }
                             else {
                                 SecureField(" Digite sua senha",
                                             text: $password)
-                                .frame(height: 38)
+                                .frame(height: 45)
                                 
                             }
                             Button(action: { self.showPassword.toggle()}) {
                                 
                                 Image(systemName: "eye")
                                     .foregroundColor(.secondary)
+                                    .padding(.trailing)
                             }
                         } .overlay {
                             RoundedRectangle(cornerRadius: 8)
@@ -104,20 +98,21 @@ struct ContentView: View {
                             .foregroundStyle(.black)
                         Spacer()
                         Toggle(isOn: $Ison) {
-                        
+                            
                         }
-                    }
+                    }.padding(.top, 10)
+                    
                     VStack(alignment: .center, spacing: 13.0) {
                         Button(action: {}, label: {
                             Spacer()
                             Text("Criar conta")
                                 .padding()
                             Spacer()
-                                
+                            
                         }).frame(height: 50)
-                        .background(.purple)
-                        .foregroundColor(.white)
-                        .cornerRadius(7)
+                            .background(.color2)
+                            .foregroundColor(.white)
+                            .cornerRadius(7)
                         
                         SignInWithAppleButton(
                             onRequest: { request in
@@ -136,7 +131,7 @@ struct ContentView: View {
                                 /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
                             }
                         }
-                    } .padding([.leading, .trailing], 0)
+                    } .padding(.top, 25)
                     Spacer()
                 }
                 .padding(.top, 45.0)
